@@ -27,6 +27,7 @@ def play_game():
             if player == user:
                 move = board.get_move()
             else:
+                print('\nThinking...')
                 move = choose_move(user, board, 700)
 
             board.update(player, move)

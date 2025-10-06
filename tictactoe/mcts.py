@@ -20,18 +20,12 @@ class Node():
         win_combos = self.board.get_win_combos()
         (player_sym, op_sym) = ('X', 'O') if self.player == 1 else ('O', 'X')
         reward = 0.
-        op_to_win = False
 
         for combo in win_combos:
-            if combo.count(player_sym) == 3:    # If player wins, always choose the causative move
+            if combo.count(player_sym) == 3:    # Always seek winning boards
                 return math.inf
-            elif combo.count(op_sym) == 2 and combo.count(player_sym) == 0:     # Avoid boards where opponent is sure to win
-                op_to_win = True
-            elif combo.count(player_sym) == 2 and combo.count(op_sym) == 0:     # Seek advantage or double advantage
+            if combo.count(player_sym) == 2 and combo.count(op_sym) == 0:   # Seek advantage or double advantage
                 reward += 0.5
-
-        if op_to_win:
-            return -math.inf
         
         return reward
 
@@ -43,7 +37,7 @@ class Node():
             exploitation_term = self.wins / self.num_sims
             explore_term = c * math.sqrt(math.log(self.parent.num_sims) / self.num_sims)
 
-            return exploitation_term + explore_term
+            return exploitation_term + explore_term + self.has_control()
     
     def select(self):
         """Select leaf (i.e. node with unexplored moves) from root."""

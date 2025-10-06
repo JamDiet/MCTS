@@ -28,7 +28,7 @@ def play_game():
                 move = board.get_move()
             else:
                 print('\nThinking...')
-                move = choose_move(user, board, 700)
+                move = choose_move(user, board, 400)
 
             board.update(player, move)
             winner = board.check_for_win()

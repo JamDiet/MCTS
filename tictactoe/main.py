@@ -53,7 +53,7 @@ def play_game():
                 print('\nThanks for playing!')
                 return None
             elif play_again != 'y':
-                print('\nInvalid choice. Please type "Y" or "N."')
+                print('\nInvalid choice. Please type "Y" or "N".')
             else:
                 break
 

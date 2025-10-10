@@ -1,8 +1,12 @@
 # Python cache
 __pycache__/
 *.py[cod]
-*.pyo
 
 # Virtual environments
 venv/
 .env/
+
+# Images
+*images*
+*.jfif
+*.png
